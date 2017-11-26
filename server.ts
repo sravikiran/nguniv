@@ -61,18 +61,18 @@ import 'zone.js/dist/zone-node';
 import { renderModuleFactory } from '@angular/platform-server'
 import { enableProdMode } from '@angular/core'
 import * as express from 'express';
-import * as compression from 'compression';
+//import * as compression from 'compression';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 
 enableProdMode();
 
-const PORT = process.env.PORT || 4200;
+const PORT = process.env.PORT || 4201;
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
 const app = express();
 
-app.use(compression());
+//app.use(compression());
 
 const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
 const { AppServerModuleNgFactory } = require('./dist/server/main.bundle');

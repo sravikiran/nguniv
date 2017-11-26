@@ -18,6 +18,7 @@ export class PokemonService {
 
   listPokemons() {
     let pokemons = this.state.get(POKEMONS_KEY, null as any);
+    console.log(pokemons);
     if (pokemons) {
       return Promise.resolve(pokemons);
     }
@@ -32,15 +33,23 @@ export class PokemonService {
           let pokemon = new Pokemon();
           pokemon.name = entry.pokemon_species.name;
           pokemon.id = entry.entry_number;
+          pokemon.imageurl = `https://rawgit.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
 
           pokemons.push(pokemon);
         });
         this.state.set(POKEMONS_KEY, pokemons as any);
+        console.log("Added pokemons in the state!!!");
         return pokemons;
       });
   }
 
   getDetails(id: number) {
+    let pokemonDetails: Pokemon = this.state.get(POKEMON_DETAILS_KEY, null as any);
+    console.log(pokemonDetails);
+    if (pokemonDetails && pokemonDetails.id === id) {
+      return Promise.resolve(pokemonDetails);
+    }
+
     return this.http.get(`${this.baseUrl}/pokemon/${id}/`)
       .toPromise()
       .then((res: any) => {
@@ -48,7 +57,8 @@ export class PokemonService {
         let pokemon = new Pokemon();
         pokemon.name = response.name;
         pokemon.id = response.id;
-
+        pokemon.imageurl = `https://rawgit.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+        
         response.types.forEach((type) => {
           pokemon.types.push(type.type.name);
         });
@@ -69,6 +79,8 @@ export class PokemonService {
           }
         }
 
+        this.state.set(POKEMON_DETAILS_KEY, pokemon as any);
+        console.log("Added pokemon details in the state!!!");
         return pokemon;
       });
   }
