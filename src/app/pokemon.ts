@@ -5,10 +5,6 @@ export class Pokemon {
   stats = [];
   sprites: Sprite[] = [];
   imageurl: string;
-  
-  get imageUrl() {
-    return `https://rawgit.com/PokeAPI/sprites/master/sprites/pokemon/${this.id}.png`;
-  }
 }
 
 export class Sprite {
