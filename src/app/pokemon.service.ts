@@ -18,7 +18,6 @@ export class PokemonService {
 
   listPokemons() {
     let pokemons = this.state.get(POKEMONS_KEY, null as any);
-    console.log(pokemons);
     if (pokemons) {
       return Promise.resolve(pokemons);
     }
@@ -38,14 +37,12 @@ export class PokemonService {
           pokemons.push(pokemon);
         });
         this.state.set(POKEMONS_KEY, pokemons as any);
-        console.log("Added pokemons in the state!!!");
         return pokemons;
       });
   }
 
   getDetails(id: number) {
     let pokemonDetails: Pokemon = this.state.get(POKEMON_DETAILS_KEY, null as any);
-    console.log(pokemonDetails);
     if (pokemonDetails && pokemonDetails.id === id) {
       return Promise.resolve(pokemonDetails);
     }
@@ -80,7 +77,6 @@ export class PokemonService {
         }
 
         this.state.set(POKEMON_DETAILS_KEY, pokemon as any);
-        console.log("Added pokemon details in the state!!!");
         return pokemon;
       });
   }
