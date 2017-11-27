@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
@@ -17,10 +17,10 @@ import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.compo
     PokemonDetailsComponent
   ],
   imports: [
-    // Add .withServerTransition() to support Universal rendering.
-    // The application ID can be any identifier which is unique on
-    // the page.
-    BrowserModule.withServerTransition({appId: 'my-app'}), routesModule, HttpModule
+    BrowserModule.withServerTransition({appId: 'my-app'}),
+    routesModule,
+    HttpModule,
+    BrowserTransferStateModule    
   ],
   providers: [PokemonService],
   bootstrap: [AppComponent]
