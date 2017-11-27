@@ -1,6 +1,6 @@
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { routesModule } from './app.routes';
 
@@ -19,7 +19,7 @@ import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.compo
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
     routesModule,
-    HttpModule,
+    HttpClientModule,
     BrowserTransferStateModule    
   ],
   providers: [PokemonService],

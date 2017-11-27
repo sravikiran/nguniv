@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { TransferState, makeStateKey } from '@angular/platform-browser';
 import 'rxjs/add/operator/toPromise';
 
@@ -13,7 +13,7 @@ export class PokemonService {
 
   private baseUrl: string = 'https://pokeapi.co/api/v2';
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
     private state: TransferState) { }
 
   listPokemons() {
@@ -26,7 +26,7 @@ export class PokemonService {
       .toPromise()
       .then((res: any) => {
         let pokemons: Pokemon[] = [];
-        let reducedPokemonEntries = JSON.parse(res._body).pokemon_entries.splice(0, 50);
+        let reducedPokemonEntries = res.pokemon_entries.splice(0, 50);
 
         reducedPokemonEntries.forEach((entry) => {
           let pokemon = new Pokemon();
@@ -50,7 +50,7 @@ export class PokemonService {
     return this.http.get(`${this.baseUrl}/pokemon/${id}/`)
       .toPromise()
       .then((res: any) => {
-        let response = JSON.parse(res._body);
+        let response = res;
         let pokemon = new Pokemon();
         pokemon.name = response.name;
         pokemon.id = response.id;
