@@ -13,7 +13,7 @@ export class AppComponent {
     title.setTitle('Explore Pokemons');
     meta.addTags([
       {
-        name: 'author', content: 'Tirumala Dilip'
+        name: 'author', content: 'DotNetCurry'
       },
       {
         name: 'keywords', content: 'angular-universal-seo'
