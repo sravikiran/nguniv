@@ -1,13 +1,11 @@
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 
-import { routesModule } from './app.routes';
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PokemonService } from './pokemon.service';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,12 +14,12 @@ import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.compo
     PokemonDetailsComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'my-app'}),
-    routesModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
     HttpClientModule,
-    BrowserTransferStateModule    
+    BrowserTransferStateModule
   ],
-  providers: [PokemonService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

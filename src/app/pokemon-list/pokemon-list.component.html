@@ -1,12 +1,10 @@
-<div *ngFor="let pokemon of pokemonList" class="col-md-3 col-md-offset-1 text-center box">
-  <div class="row">
-    <div class="col-md-12">
-      <img [src]="pokemon.imageurl" [alt]="pokemon.id" height="150" width="150" />
-    </div>
-    <div class="row">
-      <div class="col-md-12 link">
-        <a [routerLink]="['/details',pokemon.id]">{{ pokemon.name | titlecase }}</a>
-      </div>
+<div class="row">
+    <div *ngFor="let pokemon of pokemonList" class="col-md-3">
+        <img [src]="pokemon.imageurl" [alt]="pokemon.id" height="150" width="150" />
+        <div>
+            <p class="content-center">
+                <a [routerLink]="['/details',pokemon.id]">{{ pokemon.name | titlecase }}</a>
+            </p>
+        </div>
     </div>
   </div>
-</div>
